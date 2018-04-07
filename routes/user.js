@@ -7,7 +7,7 @@ const jwt = require('jwt-simple');
 const moment = require('moment');
 const jwtTokenSecret = require('../config').jwtTokenSecret;
 
-router.prefix('/user');
+router.prefix('/iv1/user');
 
 router.get('/', function (ctx, next) {
   ctx.body = 'this is a users response!'
@@ -26,15 +26,15 @@ router.post('/login', async (ctx, next) => {
 
   const user = await UserModel.findOne({
     name
-  })
+  });
   if (!user) {
     ctx.body = RestResult.error(RestResult.BUSINESS_ERROR_CODE, '用户不存在');
     return;
   }
-  console.log(user);
+  log.info(user);
   const right = await bcrypt.compare(pwd, user.pwd);
   if (right) {
-    const expires = moment().add('days', 7).valueOf();
+    const expires = moment().add(7,'days').valueOf();
     const token = jwt.encode({
       iss: user.name,
       exp: expires

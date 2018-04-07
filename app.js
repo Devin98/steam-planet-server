@@ -8,6 +8,7 @@ const logger = require('koa-logger');
 const User = require('./models/User').UserModel;
 const jwt = require('jwt-simple');
 const jwtTokenSecret = require('./config').jwtTokenSecret;
+const log = require('./utils/logUtil').log();
 
 // const index = require('./routes/index')
 // const users = require('./routes/users')
@@ -55,25 +56,28 @@ app.use(async (ctx, next) => {
 // token
 app.use(async (ctx, next) => {
   // todo 解析token
+  let token = ctx.header.token;
+  log.info(token);
   if (token) {
     try {
       const decoded = jwt.decode(token, jwtTokenSecret);
-      if (decoded.exp <= Date.now()) {
-        res.end('Access token has expired', 400);
-      } else {
-        User.findOne({
-          _id: decoded.iss
-        }, function (err, user) {
-          req.user = user;
-        });
-      }
+      log.info(decoded)
+    // if (decoded.exp <= Date.now()) {
+    //   res.end('Access token has expired', 400);
+    // } else {
+    //   User.findOne({
+    //     _id: decoded.iss
+    //   }, function (err, user) {
+    //     req.user = user;
+    //   });
+    //  }
+      await next();
     } catch (err) {
       return next();
     }
   } else {
-    next();
+    await next();
   }
-  await next();
 });
 
 
