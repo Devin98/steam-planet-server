@@ -2,7 +2,7 @@
 
 **这是一个音乐爱好者的音乐推送App**
   
-前端部分[点这里](https://github.com/Uniquec/steam-plant-web)
+前端部分[点这里](https://github.com/Devin98/steam-planet-web)
 
 ## 开发环境
 
