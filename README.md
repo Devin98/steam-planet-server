@@ -8,8 +8,8 @@
 
 **确保node环境且版本≥8**
 
-1. `git clone git@github.com:dreamhuan/steam-plant-server.git`
-1. `cd steam-plant-server`
+1. `git clone git@github.com:Devin98/steam-planet-server.git`
+1. `cd steam-planet-server`
 1. `yarn`
 1. `yarn dev`
 
