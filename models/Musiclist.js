@@ -3,8 +3,8 @@ let ObjectId = base.ObjectId;
 
 let MusiclistSchema = new base.Schema({
   name:String,
-  user:ObjectId,//用户id
-  music:ObjectId,//歌曲id
+  userId:ObjectId,//用户id
+  musicId:ObjectId,//歌曲id
 });
 
 let MusiclistModel = base.mongoose.model("MusiclistModel", MusiclistSchema, "musiclist");

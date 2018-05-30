@@ -2,8 +2,8 @@ let base = require("./Base");
 let ObjectId = base.ObjectId;
 
 let CommentSchema = new base.Schema({
-  user:ObjectId,//用户id
-  Comment:ObjectId,//评论id
+  userId:ObjectId,//用户id
+  commentId:ObjectId,//评论id
   time:Date,//点赞时间
 });
 
